@@ -1,0 +1,29 @@
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary">
+    <div class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+        <div class="container g-0">
+            <div class="row g-0">
+                <div class="col-6">
+                    <div class="p-0"><span class="fs-5 fw-semibold">Notes</span></div>
+                </div>
+                <div class="col-6">
+                    <div class="p-0 d-flex justify-content-end">
+                        <div class="btn-group" role="group" aria-label="Navigation">
+                            <a href="/folder{% if pagination is defined %}/p{{pagination.prev_page}}{% endif %}" class="btn btn-outline-primary">Prev</a>
+                            <a href="/folder{% if pagination is defined %}/p{{pagination.next_page}}{% endif %}" class="btn btn-outline-primary">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="list-group list-group-flush border-bottom scrollarea">
+        {% for item in list %}
+        <a href="/list/{{ item[0] }}/p1" 
+        class="list-group-item list-group-item-action py-3 lh-sm">
+            <div class="d-flex w-100 align-items-start justify-content-between">
+                <strong class="mb-1" style="word-wrap:break-word">{{ item[2] }}</strong>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>

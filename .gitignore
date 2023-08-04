@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+exported/
+AppDomainGroup-group.com.apple.notes/
+.venv/

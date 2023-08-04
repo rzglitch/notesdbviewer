@@ -1,0 +1,34 @@
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary">
+    <div class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+        <div class="container g-0">
+            <div class="row g-0">
+                <div class="col-6">
+                    <div class="p-0">
+                        <a class="link-underline-opacity-0 link-dark" href="/"><span class="fs-5 fw-semibold">Notes</span></a>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-0 d-flex justify-content-end">
+                        <div class="btn-group" role="group" aria-label="Navigation">
+                            <a href="{% if no is defined %}/view{% else %}/list{% endif %}/{{ folder }}/p{{pagination.prev_page}}{% if no is defined %}/{{ no }}{% endif %}" class="btn btn-outline-primary">Prev</a>
+                            <a href="{% if no is defined %}/view{% else %}/list{% endif %}/{{ folder }}/p{{pagination.next_page}}{% if no is defined %}/{{ no }}{% endif %}" class="btn btn-outline-primary">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="list-group list-group-flush border-bottom scrollarea">
+        {% for item in list %}
+        <a href="/view/{{ folder }}/p{{page}}/{{ item[0] }}" 
+        class="list-group-item list-group-item-action {% if item[0] == no %}active {% endif %}py-3 lh-sm"
+        {% if item[0] == no %}aria-current="true"{% endif %}>
+            <div class="d-flex w-100 align-items-start justify-content-between">
+                <strong class="mb-1" style="word-wrap:break-word;max-width:60%">{{ item[1] }}</strong>
+                <small>{{ item[3] }}</small>
+            </div>
+            <div class="mb-1 small" style="word-wrap: break-word">{{ item[2] }}</div>
+        </a>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+{% block title %}View note{% endblock %}
+{% block content %}
+<div class="container g-0">
+    <div class="row g-0">
+        <div class="col-4">
+        {% include "_list.html" %}
+        </div>
+        <div class="col-8 px-4 py-5" style="background-color:var(--bs-secondary-bg);word-wrap:break-word">
+            {{ content[0]|safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}
