@@ -42,6 +42,6 @@ $ flask --app viewer run
 
 Copyright © 2023 rzglitch
 
-**Disclaimer: This tool enables the view view the contents of the Notes app database extracted from the device. This tool should ONLY be used with backups extracted from your own device or with the owner's consent of device from which the backup originates. Never use this tool for any illegal purpose.**
+**Disclaimer: This tool enables the view the contents of the Notes app database extracted from the device. This tool should ONLY be used with backups extracted from your own device or with the owner's consent of device from which the backup originates. Never use this tool for any illegal purpose.**
 
 **The project contributors are not responsible if criminal charges are brought against any person or entity that breaks the law by misusing this tool and/or the information it contains.**
