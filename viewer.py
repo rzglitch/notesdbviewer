@@ -10,9 +10,20 @@ con = sqlite3.connect("./" + notes_dir + "/NoteStore.sqlite",
 
 def getHumanReadableDateTime(time: int):
     time = time + 978307200
-    conv_str = datetime.datetime.utcfromtimestamp(int(time))
+    conv_str = datetime.datetime.utcfromtimestamp(time)
 
     return conv_str
+
+
+def filterMultipleColumns(cl: list):
+    filtered = None
+
+    if not all(a is None for a in cl):
+        for i in cl:
+            if i is not None:
+                filtered = i
+
+    return filtered
 
 
 def getFolderList(page: int):
@@ -49,16 +60,13 @@ def getList(folder: int, page: int):
     for item in res.fetchall():
         num = item[0]
 
-        title = [item[2], item[3]]
-        date = [item[4], item[5], item[6], item[7]]
+        title = filterMultipleColumns([item[2], item[3]])
+        date = filterMultipleColumns([item[4], item[5], item[6], item[7]])
 
-        for i in title:
-            if i is not None:
-                title = i
-
-        for i in date:
-            if i is not None:
-                date = i
+        if type(date) is float:
+            date = int(date)
+        elif type(date) is not int:
+            date = 0
 
         snippet = item[1]
 
@@ -85,17 +93,9 @@ def getContent(data_no: int):
 
     res2_data = res2.fetchall()[0]
 
-    title = [res2_data[1], res2_data[2]]
-    date = [res2_data[3], res2_data[4],
-            res2_data[5], res2_data[6]]
-
-    for i in title:
-        if i is not None:
-            title = i
-
-    for i in date:
-        if i is not None:
-            date = i
+    title = filterMultipleColumns([res2_data[1], res2_data[2]])
+    date = filterMultipleColumns([res2_data[3], res2_data[4],
+                                  res2_data[5], res2_data[6]])
 
     # Find attachments
     res3 = cur3.execute("SELECT ZNOTE, ZNOTE1, ZMEDIA, Z_PK, " +
@@ -107,11 +107,7 @@ def getContent(data_no: int):
     attachment = []
 
     for item in res3.fetchall():
-        typeuti = [item[7], item[8]]
-
-        for i in typeuti:
-            if i is not None:
-                typeuti = i
+        typeuti = filterMultipleColumns([item[7], item[8]])
 
         if item[2] is not None:
             # media exists
